@@ -1,0 +1,10 @@
+name: 'Deploy jupyter notebooks to github pages'
+description: 'This action will create a portfolio from your jupyter notebooks.'
+author: 'Clément Trasoudaine <clement.trassoudaine@eurecom.fr>'
+runs:
+  using: 'docker'
+  main: 'Dockerfile'
+branding:
+  icon: 'git-commit'
+  color: 'blue'
+    

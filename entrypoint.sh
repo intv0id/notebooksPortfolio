@@ -1,9 +1,18 @@
-#!/bin/bash
+#! /bin/bash
 
+source activate htmlgenerationenv
+
+# Generate html from notebooks
+(find -type f -iregex .*\.ipynb; find -type f -iregex .*-checkpoint\.ipynb) | 
+      sort | 
+      uniq -u | 
+      xargs jupyter nbconvert --template toc2 --to html --output-dir ghActionPortfolioPublisher
+
+
+# Generating descriptive homepage
 notebooks_path=$(find -type d | grep "^\./[0-9]-.*" | grep -v "^\./.*/.*$")
 
 function titled_desc {
-    
     for notebook_path in $@
     do
         notebook=$((find $notebook_path -type f -iregex .*\.ipynb; find $notebook_path -type f -iregex .*-checkpoint\.ipynb) | sort | uniq -u)
